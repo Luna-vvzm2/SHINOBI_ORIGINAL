@@ -3,13 +3,17 @@
 #include "hedder.h"
 
 // グローバル変数定義
-const int GameWidth = 640;
-const int GameHeight = 480;
+const int GameWidth = 1280;
+const int GameHeight = 720;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR IpCmdLine, _In_ int nCmdShow) {
+	
+	SetMainWindowText("SHINOBI");
+
+	SetGraphMode(GameWidth, GameHeight, 32);
 
 	// 全画面はFALSE、ウィンドウが動かせるようにするならTRUE
-	ChangeWindowMode(FALSE);
+	ChangeWindowMode(TRUE);
 
 	if (DxLib_Init() == -1) return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
