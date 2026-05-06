@@ -129,8 +129,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="collision.cpp" />
+    <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="fps.cpp" />
     <ClCompile Include="hedder.h" />
+    <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="map.cpp" />
+    <ClCompile Include="player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="collision.h" />
+    <ClInclude Include="enemy.h" />
+    <ClInclude Include="fps.h" />
+    <ClInclude Include="input.h" />
+    <ClInclude Include="map.h" />
+    <ClInclude Include="player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
