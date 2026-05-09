@@ -1,7 +1,5 @@
 #include <Dxlib.h>
 
-
-#include "hedder.h"
 #include "player.h"
 #include "enemy.h"
 #include "map.h"

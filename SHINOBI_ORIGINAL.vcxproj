@@ -131,8 +131,10 @@
   <ItemGroup>
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="enemy_arrow.cpp" />
+    <ClCompile Include="enemy_white.cpp" />
+    <ClCompile Include="enemy_yellow.cpp" />
     <ClCompile Include="fps.cpp" />
-    <ClCompile Include="hedder.h" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
@@ -141,6 +143,9 @@
   <ItemGroup>
     <ClInclude Include="collision.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="enemy_arrow.h" />
+    <ClInclude Include="enemy_white.h" />
+    <ClInclude Include="enemy_yellow.h" />
     <ClInclude Include="fps.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="map.h" />
