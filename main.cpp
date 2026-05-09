@@ -35,7 +35,17 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	Character player;
 
+	Enemy white;
+	Enemy yellow;
+	Enemy arrow;
+	Enemy healer;
+	Enemy armor;
+	Enemy gunner;
+	Boss Yoroi;
+	Boss Sekienki;
+
 	PlayerInit(&player);
+	EnemyInit(&white, &yellow, &arrow, &healer, &armor, &gunner, &Yoroi, &Sekienki);
 
 	while (true) {
 		if (ProcessMessage() != 0) break;
@@ -52,7 +62,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		// ì¸óÕèàóù
 		InputUpdate();
 		PlayerUpdate(&player, dt);
-		
+		EnemyUpdate(&player, &white, &yellow, &arrow, &healer, &armor, &gunner, &Yoroi, &Sekienki);
 
 		// escÇ≈é¿çsí‚é~
 		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
@@ -63,6 +73,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		// ï`âÊèàóù
 		MapDraw();
 		PlayerDraw(&player);
+		EnemyDraw(&white, &yellow, &arrow, &healer, &armor, &gunner, &Yoroi, &Sekienki);
 		DrawFormatString(0, 0, GetColor(255,255,255), "%f", dt);
 		ScreenFlip();
 	}

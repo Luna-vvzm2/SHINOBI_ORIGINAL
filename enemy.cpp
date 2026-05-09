@@ -11,15 +11,6 @@
 #include "enemy_Sekienki.h"
 #include <stdlib.h> // rand
 
-Enemy white;
-Enemy yellow;
-Enemy arrow;
-Enemy healer;
-Enemy armor;
-Enemy gunner;
-Boss Yoroi;
-Boss Sekienki;
-
 void EnemyInit(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki){
     static int whiteCount = 0;
     static int yellowCount = 0;
@@ -66,19 +57,26 @@ void EnemyInit(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* 
     }
 }
 
-void EnemyUpdate(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
-    EnemyAI(white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
+void EnemyUpdate(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
+    EnemyAI(p, white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
     EnemyMove(white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
-    EnemyAttack(white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
+    EnemyAttack(p, white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
 }
 
-void EnemyAI(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
+void EnemyAI(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
+
 }
 
 void EnemyMove(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
+
 }
 
-void EnemyAttack(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
+void EnemyAttack(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
+
+}
+
+void EnemyDraw(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
+
 }
 
 void EnemyInitWhite(Enemy* e, int x, int y, int num) {
