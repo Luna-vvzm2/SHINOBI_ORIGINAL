@@ -16,6 +16,9 @@
     <Filter Include="ソース ファイル\Enemy">
       <UniqueIdentifier>{c405cd13-3b59-4e6c-8238-8ff599790c3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\HEnemy">
+      <UniqueIdentifier>{a2dd4e06-834e-4f35-a150-245e7e257909}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,11 +51,23 @@
     <ClCompile Include="enemy_arrow.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="enemy_gunner.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy_healer.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy_Sekienki.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy_Yoroi.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy_armor.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="enemy.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="collision.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -68,14 +83,32 @@
     <ClInclude Include="player.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="enemy_arrow.h">
+      <Filter>ヘッダー ファイル\HEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy_gunner.h">
+      <Filter>ヘッダー ファイル\HEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy_healer.h">
+      <Filter>ヘッダー ファイル\HEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy_Sekienki.h">
+      <Filter>ヘッダー ファイル\HEnemy</Filter>
+    </ClInclude>
     <ClInclude Include="enemy_white.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\HEnemy</Filter>
     </ClInclude>
     <ClInclude Include="enemy_yellow.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\HEnemy</Filter>
     </ClInclude>
-    <ClInclude Include="enemy_arrow.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="enemy_Yoroi.h">
+      <Filter>ヘッダー ファイル\HEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>ヘッダー ファイル\HEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy_armor.h">
+      <Filter>ヘッダー ファイル\HEnemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -131,9 +131,14 @@
   <ItemGroup>
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="enemy_armor.cpp" />
     <ClCompile Include="enemy_arrow.cpp" />
+    <ClCompile Include="enemy_gunner.cpp" />
+    <ClCompile Include="enemy_healer.cpp" />
+    <ClCompile Include="enemy_Sekienki.cpp" />
     <ClCompile Include="enemy_white.cpp" />
     <ClCompile Include="enemy_yellow.cpp" />
+    <ClCompile Include="enemy_Yoroi.cpp" />
     <ClCompile Include="fps.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -143,9 +148,14 @@
   <ItemGroup>
     <ClInclude Include="collision.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="enemy_armor.h" />
     <ClInclude Include="enemy_arrow.h" />
+    <ClInclude Include="enemy_gunner.h" />
+    <ClInclude Include="enemy_healer.h" />
+    <ClInclude Include="enemy_Sekienki.h" />
     <ClInclude Include="enemy_white.h" />
     <ClInclude Include="enemy_yellow.h" />
+    <ClInclude Include="enemy_Yoroi.h" />
     <ClInclude Include="fps.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="map.h" />
