@@ -28,7 +28,7 @@ typedef struct Enemy{
 	int animationNo[10];
 }Enemy;
 
-typedef struct {
+typedef struct Boss{
 	int hpMax;
 	int hp;
 
@@ -50,6 +50,14 @@ typedef struct {
 	int animationNo;
 }Boss;
 
+static int whiteCount = 0;
+static int yellowCount = 0;
+static int arrowCount = 0;
+static int healerCount = 0;
+static int armorCount = 0;
+static int gunnerCount = 0;
+
+
 void EnemyInit(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
 void EnemyInitWhite(Enemy* e, int x, int y, int num);
 void EnemyInitYellow(Enemy* e, int x, int y, int num);
@@ -60,8 +68,8 @@ void EnemyInitGunner(Enemy* e, int x, int y, int num);
 void EnemyInitYoroi(Boss* e, int x, int y);
 void EnemyInitSekienki(Boss* e, int x, int y);
 
-void EnemyUpdate(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
-void EnemyAI(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
+void EnemyUpdate(float dt, Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
+void EnemyAI(float dt, Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
 void EnemyMove(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
 void EnemyAttack(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
 void EnemyDraw(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);

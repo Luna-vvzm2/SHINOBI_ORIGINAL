@@ -12,12 +12,12 @@
 #include <stdlib.h> // rand
 
 void EnemyInit(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki){
-    static int whiteCount = 0;
-    static int yellowCount = 0;
-    static int arrowCount = 0;
-    static int healerCount = 0;
-    static int armorCount = 0;
-    static int gunnerCount = 0;
+    whiteCount = 0;
+    yellowCount = 0;
+    arrowCount = 0;
+    healerCount = 0;
+    armorCount = 0;
+    gunnerCount = 0;
 
     for (int i = 0; i < mapHeight; i++) {
         for (int j = 0; j < mapWidth; j++) {
@@ -57,13 +57,13 @@ void EnemyInit(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* 
     }
 }
 
-void EnemyUpdate(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
-    EnemyAI(p, white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
+void EnemyUpdate(float dt, Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
+    EnemyAI(dt, p, white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
     EnemyMove(white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
     EnemyAttack(p, white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
 }
 
-void EnemyAI(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
+void EnemyAI(float dt, Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
 
 }
 
