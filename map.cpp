@@ -3,15 +3,10 @@
 #include <errno.h>
 #include <windows.h>
 
-const int mapWidth = 190;
-const int mapHeight = 20;
-
-static int mapData[mapHeight][mapWidth];
-
-void MapLoad() {
+void MapLoad(const char* mapfilename, const char* objfilename) {
     // ÉtÉ@ÉCÉãì«Ç›çûÇ›
 	FILE* fp = nullptr;
-	errno_t err = fopen_s(&fp, "map.csv", "r");
+	errno_t err = fopen_s(&fp, mapfilename, "r");
 
 	if (err != 0 || fp == nullptr) {
 		printf("open failed: %d\n", err);
@@ -28,6 +23,27 @@ void MapLoad() {
 	for (int i = 0; i < mapHeight; i++) {
 		for (int j = 0; j < mapWidth; j++) {
 			fscanf_s(fp, "%d%*[,]", &mapData[i][j]);
+		}
+	}
+	fclose(fp);
+
+	err = fopen_s(&fp, objfilename, "r");
+
+	if (err != 0 || fp == nullptr) {
+		printf("open failed: %d\n", err);
+		char buf[64];
+		sprintf_s(buf, "err=%d\n", err);
+		OutputDebugStringA(buf);
+		return;
+	}
+	else {
+		printf("open success\n");
+		OutputDebugStringA("open success\n");
+	}
+
+	for (int i = 0; i < mapHeight; i++) {
+		for (int j = 0; j < mapWidth; j++) {
+			fscanf_s(fp, "%d%*[,]", &objData[i][j]);
 		}
 	}
 	fclose(fp);
