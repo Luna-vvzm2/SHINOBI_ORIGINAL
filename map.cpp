@@ -65,7 +65,7 @@ void MapDraw() {
 				DrawBox(j * 32, i * 32, (j + 1) * 32, (i + 1) * 32, GetColor(200, 200, 200), TRUE);
 			}
 
-			DrawFormatString(j * 32, i * 32, GetColor(255, 0, 0), "%d", objData[i][j]);
+			// DrawFormatString(j * 32, i * 32, GetColor(255, 0, 0), "%d", objData[i][j]);
 		}
 	}
 	
