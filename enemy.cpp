@@ -11,6 +11,13 @@
 #include "enemy_Sekienki.h"
 #include <stdlib.h> // rand
 
+int whiteCount = 0;
+int yellowCount = 0;
+int arrowCount = 0;
+int healerCount = 0;
+int armorCount = 0;
+int gunnerCount = 0;
+
 void EnemyInit(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki){
     whiteCount = 0;
     yellowCount = 0;
@@ -28,7 +35,7 @@ void EnemyInit(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* 
                 break;
             case 2:
                 EnemyInitYellow(yellow, j, i, yellowCount);
-                yellowCount;
+                yellowCount++;
                 break;
             case 3:
                 EnemyInitArrow(arrow, j, i, arrowCount);
@@ -58,16 +65,16 @@ void EnemyInit(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* 
 }
 
 void EnemyUpdate(float dt, Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
-    EnemyAI(dt, p, white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
-    EnemyMove(white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
+    EnemyAI(p, white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
+    EnemyMove(dt, white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
     EnemyAttack(p, white, yellow, arrow, healer, armor, gunner, Yoroi, Sekienki);
 }
 
-void EnemyAI(float dt, Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
+void EnemyAI(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
 
 }
 
-void EnemyMove(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
+void EnemyMove(float dt, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
 
 }
 
@@ -87,11 +94,11 @@ void EnemyInitWhite(Enemy* e, int x, int y, int num) {
     e->metsuMax = 100;
     e->metsuGauge[num] = 0;
 
-    e->x[num] = x;
-    e->y[num] = y;
+    e->x[num] = (float)x;
+    e->y[num] = (float)y;
 
-    e->vx[num] = 0;
-    e->vy[num] = 0;
+    e->vx[num] = 0.0f;
+    e->vy[num] = 0.0f;
 
     e->bullet[num] = e->bulletMax = 3;
 
@@ -111,11 +118,11 @@ void EnemyInitYellow(Enemy* e, int x, int y, int num) {
     e->metsuMax = 100;
     e->metsuGauge[num] = 0;
 
-    e->x[num] = x;
-    e->y[num] = y;
+    e->x[num] = (float)x;
+    e->y[num] = (float)y;
 
-    e->vx[num] = 0;
-    e->vy[num] = 0;
+    e->vx[num] = 0.0f;
+    e->vy[num] = 0.0f;
 
     e->bullet[num] = e->bulletMax = 3;
 
@@ -135,11 +142,11 @@ void EnemyInitArrow(Enemy* e, int x, int y, int num) {
     e->metsuMax = 100;
     e->metsuGauge[num] = 0;
 
-    e->x[num] = x;
-    e->y[num] = y;
+    e->x[num] = (float)x;
+    e->y[num] = (float)y;
 
-    e->vx[num] = 0;
-    e->vy[num] = 0;
+    e->vx[num] = 0.0f;
+    e->vy[num] = 0.0f;
 
     e->bullet[num] = e->bulletMax = 3;
 
@@ -159,11 +166,11 @@ void EnemyInitHealer(Enemy* e, int x, int y, int num) {
     e->metsuMax = 100;
     e->metsuGauge[num] = 0;
 
-    e->x[num] = x;
-    e->y[num] = y;
+    e->x[num] = (float)x;
+    e->y[num] = (float)y;
 
-    e->vx[num] = 0;
-    e->vy[num] = 0;
+    e->vx[num] = 0.0f;
+    e->vy[num] = 0.0f;
 
     e->bullet[num] = e->bulletMax = 3;
 
@@ -183,11 +190,11 @@ void EnemyInitArmor(Enemy* e, int x, int y, int num) {
     e->metsuMax = 100;
     e->metsuGauge[num] = 0;
 
-    e->x[num] = x;
-    e->y[num] = y;
+    e->x[num] = (float)x;
+    e->y[num] = (float)y;
 
-    e->vx[num] = 0;
-    e->vy[num] = 0;
+    e->vx[num] = 0.0f;
+    e->vy[num] = 0.0f;
 
     e->bullet[num] = e->bulletMax = 3;
 
@@ -207,11 +214,11 @@ void EnemyInitGunner(Enemy* e, int x, int y, int num) {
     e->metsuMax = 100;
     e->metsuGauge[num] = 0;
 
-    e->x[num] = x;
-    e->y[num] = y;
+    e->x[num] = (float)x;
+    e->y[num] = (float)y;
 
-    e->vx[num] = 0;
-    e->vy[num] = 0;
+    e->vx[num] = 0.0f;
+    e->vy[num] = 0.0f;
 
     e->bullet[num] = e->bulletMax = 3;
 
@@ -230,11 +237,11 @@ void EnemyInitYoroi(Boss* e, int x, int y) {
     e->metsuGauge = 0;
     e->metsu = false;
 
-    e->x = x;
-    e->y = y;
+    e->x = (float)x;
+    e->y = (float)y;
 
-    e->vx = 0;
-    e->vy = 0;
+    e->vx = 0.0f;
+    e->vy = 0.0f;
 
     e->bullet = e->bulletMax = 3;
 
@@ -251,11 +258,11 @@ void EnemyInitSekienki(Boss* e, int x, int y) {
     e->metsuGauge = 0;
     e->metsu = false;
 
-    e->x = x;
-    e->y = y;
+    e->x = (float)x;
+    e->y = (float)y;
 
-    e->vx = 0;
-    e->vy = 0;
+    e->vx = 0.0f;
+    e->vy = 0.0f;
 
     e->bullet = e->bulletMax = 3;
 

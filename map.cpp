@@ -3,6 +3,9 @@
 #include <errno.h>
 #include <windows.h>
 
+int mapData[mapHeight][mapWidth];
+int objData[mapHeight][mapWidth];
+
 void MapLoad(const char* mapfilename, const char* objfilename) {
     // ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
 	FILE* fp = nullptr;
