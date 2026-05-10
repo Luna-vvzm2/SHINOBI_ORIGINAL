@@ -111,4 +111,12 @@
       <Filter>ヘッダー ファイル\HEnemy</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="map.csv">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="obj.csv">
+      <Filter>リソース ファイル</Filter>
+    </None>
+  </ItemGroup>
 </Project>

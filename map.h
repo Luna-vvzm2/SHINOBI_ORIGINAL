@@ -2,8 +2,10 @@
 const int mapWidth = 190;
 const int mapHeight = 20;
 
-static int mapData[mapHeight][mapWidth];
-static int objData[mapHeight][mapWidth];
+const int mapTile = 32;
+
+extern int mapData[mapHeight][mapWidth];
+extern int objData[mapHeight][mapWidth];
 
 void MapLoad(const char* mapfilename, const char* objfilename);
 void MapUpdate();

@@ -161,6 +161,10 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="player.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="map.csv" />
+    <None Include="obj.csv" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

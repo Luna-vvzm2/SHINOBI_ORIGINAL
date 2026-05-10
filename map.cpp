@@ -3,6 +3,9 @@
 #include <errno.h>
 #include <windows.h>
 
+int mapData[mapHeight][mapWidth];
+int objData[mapHeight][mapWidth];
+
 void MapLoad(const char* mapfilename, const char* objfilename) {
     // ÉtÉ@ÉCÉãì«Ç›çûÇ›
 	FILE* fp = nullptr;
@@ -60,8 +63,9 @@ void MapDraw() {
 		for (int j = 0; j < mapWidth; j++) {
 			if (mapData[i][j] == 1) {
 				DrawBox(j * 32, i * 32, (j + 1) * 32, (i + 1) * 32, GetColor(200, 200, 200), TRUE);
-				//DrawFormatString(j * 32, i * 32, GetColor(255, 0, 0), "%d", mapData[i][j]);
 			}
+
+			DrawFormatString(j * 32, i * 32, GetColor(255, 0, 0), "%d", objData[i][j]);
 		}
 	}
 	

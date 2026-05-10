@@ -14,8 +14,8 @@ typedef struct Enemy{
 	int metsuGauge[10]; // ˆŒYƒQ[ƒW‚Ì—­‚Ü‚è‹ï‡
 	bool metsu[10]; //–Åó‘Ô‚©”Û‚©
 
-	int x[10], y[10];
-	int vx[10], vy[10];
+	float x[10], y[10];
+	float vx[10], vy[10];
 
 	int bulletMax;
 	int bullet[10];
@@ -28,7 +28,7 @@ typedef struct Enemy{
 	int animationNo[10];
 }Enemy;
 
-typedef struct {
+typedef struct Boss{
 	int hpMax;
 	int hp;
 
@@ -36,8 +36,8 @@ typedef struct {
 	int metsuGauge; // ˆŒYƒQ[ƒW‚Ì—­‚Ü‚è‹ï‡
 	bool metsu;
 
-	int x, y;
-	int vx, vy;
+	float x, y;
+	float vx, vy;
 
 	int bulletMax;
 	int bullet;
@@ -50,6 +50,13 @@ typedef struct {
 	int animationNo;
 }Boss;
 
+extern int whiteCount;
+extern int yellowCount;
+extern int arrowCount;
+extern int healerCount;
+extern int armorCount;
+extern int gunnerCount;
+
 void EnemyInit(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
 void EnemyInitWhite(Enemy* e, int x, int y, int num);
 void EnemyInitYellow(Enemy* e, int x, int y, int num);
@@ -60,9 +67,9 @@ void EnemyInitGunner(Enemy* e, int x, int y, int num);
 void EnemyInitYoroi(Boss* e, int x, int y);
 void EnemyInitSekienki(Boss* e, int x, int y);
 
-void EnemyUpdate(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
+void EnemyUpdate(float dt, Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
 void EnemyAI(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
-void EnemyMove(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
+void EnemyMove(float dt, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
 void EnemyAttack(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
 void EnemyDraw(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki);
 
