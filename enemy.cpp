@@ -94,8 +94,8 @@ void EnemyInitWhite(Enemy* e, int x, int y, int num) {
     e->metsuMax = 100;
     e->metsuGauge[num] = 0;
 
-    e->x[num] = (float)x;
-    e->y[num] = (float)y;
+    e->x[num] = (float)x * mapTile;
+    e->y[num] = (float)y * mapTile;
 
     e->vx[num] = 0.0f;
     e->vy[num] = 0.0f;
@@ -118,8 +118,8 @@ void EnemyInitYellow(Enemy* e, int x, int y, int num) {
     e->metsuMax = 100;
     e->metsuGauge[num] = 0;
 
-    e->x[num] = (float)x;
-    e->y[num] = (float)y;
+    e->x[num] = (float)x * mapTile;
+    e->y[num] = (float)y * mapTile;
 
     e->vx[num] = 0.0f;
     e->vy[num] = 0.0f;
@@ -142,8 +142,8 @@ void EnemyInitArrow(Enemy* e, int x, int y, int num) {
     e->metsuMax = 100;
     e->metsuGauge[num] = 0;
 
-    e->x[num] = (float)x;
-    e->y[num] = (float)y;
+    e->x[num] = (float)x * mapTile;
+    e->y[num] = (float)y * mapTile;
 
     e->vx[num] = 0.0f;
     e->vy[num] = 0.0f;
@@ -166,8 +166,8 @@ void EnemyInitHealer(Enemy* e, int x, int y, int num) {
     e->metsuMax = 100;
     e->metsuGauge[num] = 0;
 
-    e->x[num] = (float)x;
-    e->y[num] = (float)y;
+    e->x[num] = (float)x * mapTile;
+    e->y[num] = (float)y * mapTile;
 
     e->vx[num] = 0.0f;
     e->vy[num] = 0.0f;
@@ -190,8 +190,8 @@ void EnemyInitArmor(Enemy* e, int x, int y, int num) {
     e->metsuMax = 100;
     e->metsuGauge[num] = 0;
 
-    e->x[num] = (float)x;
-    e->y[num] = (float)y;
+    e->x[num] = (float)x * mapTile;
+    e->y[num] = (float)y * mapTile;
 
     e->vx[num] = 0.0f;
     e->vy[num] = 0.0f;
@@ -214,8 +214,8 @@ void EnemyInitGunner(Enemy* e, int x, int y, int num) {
     e->metsuMax = 100;
     e->metsuGauge[num] = 0;
 
-    e->x[num] = (float)x;
-    e->y[num] = (float)y;
+    e->x[num] = (float)x * mapTile;
+    e->y[num] = (float)y * mapTile;
 
     e->vx[num] = 0.0f;
     e->vy[num] = 0.0f;
@@ -237,8 +237,8 @@ void EnemyInitYoroi(Boss* e, int x, int y) {
     e->metsuGauge = 0;
     e->metsu = false;
 
-    e->x = (float)x;
-    e->y = (float)y;
+    e->x = (float)x * mapTile;
+    e->y = (float)y * mapTile;
 
     e->vx = 0.0f;
     e->vy = 0.0f;
@@ -258,8 +258,8 @@ void EnemyInitSekienki(Boss* e, int x, int y) {
     e->metsuGauge = 0;
     e->metsu = false;
 
-    e->x = (float)x;
-    e->y = (float)y;
+    e->x = (float)x * mapTile;
+    e->y = (float)y * mapTile;
 
     e->vx = 0.0f;
     e->vy = 0.0f;
