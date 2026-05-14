@@ -11,6 +11,8 @@
 #include "enemy_Sekienki.h"
 #include <stdlib.h> // rand
 
+#include <dxlib.h>
+
 int whiteCount = 0;
 int yellowCount = 0;
 int arrowCount = 0;
@@ -71,11 +73,11 @@ void EnemyUpdate(float dt, Character* p, Enemy* white, Enemy* yellow, Enemy* arr
 }
 
 void EnemyAI(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
-
+    WhiteAI(p, white);
 }
 
 void EnemyMove(float dt, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
-
+    WhiteMove(dt, white);
 }
 
 void EnemyAttack(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
@@ -83,7 +85,8 @@ void EnemyAttack(Character* p, Enemy* white, Enemy* yellow, Enemy* arrow, Enemy*
 }
 
 void EnemyDraw(Enemy* white, Enemy* yellow, Enemy* arrow, Enemy* healer, Enemy* armor, Enemy* gunner, Boss* Yoroi, Boss* Sekienki) {
-
+    WhiteDraw(white);
+    DrawFormatString(0, 64, GetColor(0, 0, 250), "%d", whiteCount);
 }
 
 void EnemyInitWhite(Enemy* e, int x, int y, int num) {
