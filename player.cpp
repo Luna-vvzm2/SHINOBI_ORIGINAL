@@ -6,7 +6,7 @@
 
 void PlayerInit(Character* p) {
     p->x = 100.0f;
-    p->y = 300.0f;
+    p->y = 500.0f;
     p->vx = 0.0f;
     p->vy = 0.0f;
 
@@ -22,13 +22,13 @@ void PlayerInit(Character* p) {
     p->jump = true;
     p->jumpCount = 0;
     p->jumpTime = 0.0f;
-    p->stick = false;
-    p->dodge = false;
-    p->squat = false;
 
-    p->attackType = 0;
     p->attack = false;
-    p->hit = false;
+    p->attackType = 0;
+    p->weakAttackIdx = 0;
+    p->strongAttackIdx = 0;
+    p->attackTimer = 0.0f;
+    p->state = IDLE;
 
     p->autoGofu = 0;
     p->attackGofu = 0;
@@ -45,7 +45,15 @@ void PlayerUpdate(Character* p, float dt) {
     PlayerMove(p, dt);
     PlayerJump(p, dt);
     PlayerGravity(p, dt);
-    PlayerAttack(p);
+    PlayerAttack(p, dt);
+    if (p->attack) {
+        p->attackTimer -= dt;
+        if (p->attackTimer <= 0) {
+            p->attack = false;
+            p->weakAttackIdx = 0;
+            p->strongAttackIdx = 0;
+        }
+    }
 }
 
 void PlayerMove(Character* p, float dt) {
@@ -54,6 +62,7 @@ void PlayerMove(Character* p, float dt) {
     if (InputPress(KEY_INPUT_A)) {
         p->vx = -500.0f;
         p->dir = false;
+        p->state = RUN;
     }
     if (InputPress(KEY_INPUT_D)) {
         if (!p->dir) {
@@ -63,6 +72,7 @@ void PlayerMove(Character* p, float dt) {
             p->vx = 500.0f;
         }
         p->dir = true;
+        p->state = RUN;
     }
 
     p->x += p->vx * dt;
@@ -71,11 +81,12 @@ void PlayerMove(Character* p, float dt) {
 void PlayerJump(Character* p, float dt) {
     if (InputTrigger(KEY_INPUT_SPACE)) {
         if (p->jumpCount == 0) {
-            p->vy = -800.0f;
+            p->vy = -900.0f;
             p->jump = true;
             p->jumpCount++;
 
             p->jumpTime = 0.0f;
+            p->state = JUMP;
         }
         else if (p->jumpCount == 1) {
             p->vy = -700.0f;
@@ -91,39 +102,75 @@ void PlayerJump(Character* p, float dt) {
 
 void PlayerGravity(Character* p, float dt) {
     if (p->jump) {
-        p->vy += 2500.0f * dt;
+        p->vy += 2800.0f * dt;
         p->y += p->vy * dt;
+    }
+    else {
+        p->state = FALL;
     }
 
     if (MapIsGround((int)p->x, (int)p->y)) {
         p->y = (float)MapGetGroundY((int)p->x, (int)p->y);
-        p->vy = 0.0f;
+        p->vy *= 0.99;
         p->jump = false;
         p->jumpTime = 0.0f;
         p->jumpCount = 0;
+        p->state = IDLE;
     }
 }
 
-void PlayerAttack(Character* p) {
+void PlayerAttack(Character* p, float dt) {
     if (InputTrigger(KEY_INPUT_I)) {
-        PlayerWeakAttack(p);
+        PlayerWeakAttack(p, dt);
     }
 
     if (InputTrigger(KEY_INPUT_O)) {
-        PlayerStrongAttack(p);
+        PlayerStrongAttack(p, dt);
     }
 }
 
-void PlayerWeakAttack(Character* p) {
-    p->attack = true;
-    p->attackType = 1;
+void PlayerWeakAttack(Character* p, float dt) {
+    if (p->weakAttackIdx < 4) {
+        p->attack = true;
+        p->state = ATTACK;
+        p->attackType = 1;
+        p->attackTimer = 0.2f;
+        p->weakAttackIdx++;
+    }
 }
 
-void PlayerStrongAttack(Character* p) {
-    p->attack = true;
-    p->attackType = 2;
+void PlayerStrongAttack(Character* p, float dt) {
+    if (p->strongAttackIdx < 2) {
+        p->attack = true;
+        p->state = ATTACK;
+        p->attackType = 2;
+        p->attackTimer = 0.3f;
+        p->strongAttackIdx++;
+    }
 }
 
 void PlayerDraw(Character* p) {
-    DrawBox((int)p->x - 32, (int)p->y - 32, (int)p->x, (int)p->y, GetColor(200, 255, 255), TRUE);
+    switch (p->state) {
+    case IDLE:
+        DrawBox((int)p->x - 32, (int)p->y - 64, (int)p->x, (int)p->y, GetColor(200, 255, 255), TRUE);
+        break;
+    case RUN:
+        DrawBox((int)p->x - 32, (int)p->y - 64, (int)p->x, (int)p->y, GetColor(200, 255, 255), TRUE);
+        break;
+    case SQUAT:
+        DrawBox((int)p->x - 32, (int)p->y - 32, (int)p->x, (int)p->y, GetColor(200, 255, 255), TRUE);
+        break;
+    case JUMP:
+        DrawBox((int)p->x - 32, (int)p->y - 64, (int)p->x, (int)p->y - 10, GetColor(200, 255, 255), TRUE);
+        break;
+    case ATTACK:
+        DrawBox((int)p->x - 32, (int)p->y - 64, (int)p->x + 10, (int)p->y, GetColor(200, 255, 255), TRUE);
+        break;
+    case HIT:
+        DrawBox((int)p->x - 40, (int)p->y - 55, (int)p->x, (int)p->y, GetColor(200, 255, 255), TRUE);
+        break;
+    case DEAD:
+        DrawBox((int)p->x - 64, (int)p->y - 32, (int)p->x, (int)p->y, GetColor(200, 255, 255), TRUE);
+        break;
+    }
 }
