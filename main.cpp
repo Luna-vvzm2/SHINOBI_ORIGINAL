@@ -55,8 +55,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		int nowTime = GetNowCount();
 		float dt = (nowTime - prevTime) / 1000.0f;
-		if (dt > 0.05f) {
-			dt = 0.05f;
+		if (dt > 0.03f) {
+			dt = 0.03f;
 		}
 		prevTime = nowTime;
 

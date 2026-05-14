@@ -10,6 +10,10 @@
 #define DODGE 7
 #define DEAD 8
 
+typedef struct Box {
+	int x, y, w, h;
+}Box;
+
 typedef struct Character {
 	float x, y;
 	float vx, vy;
@@ -29,6 +33,7 @@ typedef struct Character {
 
 	bool attack;
 	int attackType;
+	Box attackBox;
 	int weakAttackIdx;
 	int strongAttackIdx;
 	float attackTimer;
@@ -52,5 +57,6 @@ void PlayerGravity(Character* p, float dt);
 void PlayerAttack(Character* p, float dt);
 void PlayerWeakAttack(Character* p, float dt);
 void PlayerStrongAttack(Character* p, float dt);
+void PlayerStateUpdate(Character* p);
 
 void PlayerDraw(Character* p);

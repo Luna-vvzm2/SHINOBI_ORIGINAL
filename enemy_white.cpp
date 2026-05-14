@@ -54,7 +54,7 @@ void WhiteMove(float dt, Enemy* white) {
 
 void WhiteDraw(Enemy* white) {
     for (int i = 0; i < whiteCount; i++) {
-        DrawBox((int)white->x[i] - 32.0f, (int)white->y[i] - 32.0f, (int)white->x[i], (int)white->y[i], GetColor(250, 250, 250), TRUE);
+        DrawBox((int)white->x[i] - 32, (int)white->y[i] - 32, (int)white->x[i], (int)white->y[i], GetColor(250, 250, 250), TRUE);
     }
     DrawFormatString(0, 32, GetColor(0, 250, 0), "%d", whiteCount);
 }

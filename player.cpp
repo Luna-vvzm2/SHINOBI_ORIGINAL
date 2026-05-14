@@ -54,27 +54,42 @@ void PlayerUpdate(Character* p, float dt) {
             p->strongAttackIdx = 0;
         }
     }
+    PlayerStateUpdate(p);
 }
 
 void PlayerMove(Character* p, float dt) {
     p->vx = 0;
-
-    if (InputPress(KEY_INPUT_A)) {
-        p->vx = -500.0f;
-        p->dir = false;
-        p->state = RUN;
-    }
-    if (InputPress(KEY_INPUT_D)) {
-        if (!p->dir) {
-            p->vx = 0.0f;
+    if (InputPress(KEY_INPUT_S) && !p->jump) {
+        if (InputPress(KEY_INPUT_A)) {
+            p->vx = -250.0f;
+            p->dir = false;
         }
-        else{
-            p->vx = 500.0f;
+        if (InputPress(KEY_INPUT_D)) {
+            if (!p->dir) {
+                p->vx = 0.0f;
+            }
+            else {
+                p->vx = 250.0f;
+            }
+            p->dir = true;
         }
-        p->dir = true;
-        p->state = RUN;
     }
-
+    else {
+        if (InputPress(KEY_INPUT_A)) {
+            p->vx = -500.0f;
+            p->dir = false;
+        }
+  
+        if (InputPress(KEY_INPUT_D)) {
+            if (!p->dir) {
+                p->vx = 0.0f;
+            }
+            else {
+                p->vx = 500.0f;
+            }
+            p->dir = true;
+        }
+    }
     p->x += p->vx * dt;
 }
 
@@ -86,7 +101,6 @@ void PlayerJump(Character* p, float dt) {
             p->jumpCount++;
 
             p->jumpTime = 0.0f;
-            p->state = JUMP;
         }
         else if (p->jumpCount == 1) {
             p->vy = -700.0f;
@@ -105,17 +119,17 @@ void PlayerGravity(Character* p, float dt) {
         p->vy += 2800.0f * dt;
         p->y += p->vy * dt;
     }
-    else {
-        p->state = FALL;
-    }
 
     if (MapIsGround((int)p->x, (int)p->y)) {
         p->y = (float)MapGetGroundY((int)p->x, (int)p->y);
-        p->vy *= 0.99;
+        p->vx *= 0.3f;
+        p->vy =0.0f;
         p->jump = false;
         p->jumpTime = 0.0f;
         p->jumpCount = 0;
-        p->state = IDLE;
+    }
+    else {
+        p->jump = true;
     }
 }
 
@@ -132,7 +146,6 @@ void PlayerAttack(Character* p, float dt) {
 void PlayerWeakAttack(Character* p, float dt) {
     if (p->weakAttackIdx < 4) {
         p->attack = true;
-        p->state = ATTACK;
         p->attackType = 1;
         p->attackTimer = 0.2f;
         p->weakAttackIdx++;
@@ -142,11 +155,42 @@ void PlayerWeakAttack(Character* p, float dt) {
 void PlayerStrongAttack(Character* p, float dt) {
     if (p->strongAttackIdx < 2) {
         p->attack = true;
-        p->state = ATTACK;
         p->attackType = 2;
         p->attackTimer = 0.3f;
         p->strongAttackIdx++;
     }
+}
+
+void PlayerStateUpdate(Character* p)
+{
+    if (p->hp <= 0) {
+        p->state = DEAD;
+        return;
+    }
+
+    if (p->attack) {
+        p->state = ATTACK;
+        return;
+    }
+
+    if (p->jump) {
+        if (p->vy < 0)
+            p->state = JUMP;
+        else
+            p->state = FALL;
+        return;
+    }
+
+    if (InputPress(KEY_INPUT_S)) {
+        p->state = SQUAT;
+        return;
+    }
+
+    if (p->vx != 0) {
+        p->state = RUN;
+        return;
+    }
+    p->state = IDLE;
 }
 
 void PlayerDraw(Character* p) {
@@ -163,8 +207,11 @@ void PlayerDraw(Character* p) {
     case JUMP:
         DrawBox((int)p->x - 32, (int)p->y - 64, (int)p->x, (int)p->y - 10, GetColor(200, 255, 255), TRUE);
         break;
+    case FALL:
+        DrawBox((int)p->x - 32, (int)p->y - 64, (int)p->x, (int)p->y - 10, GetColor(200, 255, 255), TRUE);
+        break;
     case ATTACK:
-        DrawBox((int)p->x - 32, (int)p->y - 64, (int)p->x + 10, (int)p->y, GetColor(200, 255, 255), TRUE);
+        DrawBox((int)p->x - 32 - 10 * !p->dir, (int)p->y - 64, (int)p->x + 10 * p->dir, (int)p->y, GetColor(200, 255, 255), TRUE);
         break;
     case HIT:
         DrawBox((int)p->x - 40, (int)p->y - 55, (int)p->x, (int)p->y, GetColor(200, 255, 255), TRUE);
@@ -173,4 +220,5 @@ void PlayerDraw(Character* p) {
         DrawBox((int)p->x - 64, (int)p->y - 32, (int)p->x, (int)p->y, GetColor(200, 255, 255), TRUE);
         break;
     }
+    DrawFormatString(0, 96, GetColor(0, 250, 0), "%d", p->state);
 }
